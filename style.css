@@ -1,0 +1,247 @@
+/* style.css */
+body {
+  background-color: #2d2d2d; /* Dark background */
+  color: #cccccc; /* Light grey text */
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px; /* Max width for the content area */
+  padding: 20px;
+  background-color: #333333; /* Slightly lighter dark for container */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #444444;
+  font-size: 0.9em;
+  color: #aaaaaa;
+}
+
+.stat-item span {
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+#text-display-container {
+  background-color: #282c34; /* Darker background for text area, similar to many code editors */
+  padding: 20px;
+  border-radius: 6px;
+  min-height: 120px; /* Ensure enough space for a few lines of text */
+  display: flex;
+  align-items: center; /* Vertically center if text is short */
+}
+
+.text-to-type {
+  font-family: "Roboto Mono", monospace; /* Monospaced font for typing */
+  font-size: 1.4em; /* Larger font for readability */
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  color: #e0e0e0; /* Brighter text for the content */
+  white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
+  word-break: break-all; /* Break long words if necessary, though ideally text won't have them */
+  user-select: none; /* Prevent text selection by mouse */
+}
+
+.text-to-type span {
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.text-to-type .correct {
+  color: #76c776; /* Green for correct characters */
+}
+
+.text-to-type .incorrect {
+  color: #ff6666; /* Red for incorrect characters */
+  background-color: rgba(
+    255,
+    102,
+    102,
+    0.15
+  ); /* Slight red background for incorrect */
+  text-decoration: underline;
+  text-decoration-color: #ff6666;
+  text-decoration-thickness: 1px;
+}
+
+.text-to-type .current {
+  background-color: #555555; /* Highlight for the current character */
+  border-radius: 2px;
+  padding: 0.05em 0.1em;
+  box-shadow: 0 0 0 1px #777777; /* Subtle border */
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls label {
+  font-size: 0.9em;
+  color: #bbbbbb;
+}
+
+.controls select,
+.controls button {
+  padding: 10px 18px;
+  border: 1px solid #555555;
+  background-color: #444444;
+  color: #dddddd;
+  border-radius: 5px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.controls select:focus,
+.controls button:focus {
+  outline: none;
+  border-color: #777777;
+  box-shadow: 0 0 5px rgba(120, 120, 120, 0.5);
+}
+
+.controls button:hover {
+  background-color: #505050;
+}
+
+.controls button:disabled {
+  background-color: #3a3a3a;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+.keyboard-hint {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow keyboard hints to wrap on smaller screens */
+  gap: 5px;
+  padding: 10px 0;
+  margin-top: 10px;
+  border-top: 1px solid #444444;
+}
+
+.keyboard-hint span {
+  background-color: #4a4a4a;
+  color: #cccccc;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-family: "Roboto Mono", monospace;
+  min-width: 20px; /* Ensure some width for single chars */
+  text-align: center;
+}
+
+.keyboard-hint .spacebar-hint {
+  padding: 8px 40px; /* Wider for spacebar */
+}
+
+/* Custom message box */
+.message-box {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 25px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1em;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.message-box.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+.message-box.success {
+  background-color: #28a745; /* Green for success */
+}
+
+.message-box.info {
+  background-color: #17a2b8; /* Blue for info */
+}
+
+.message-box.error {
+  background-color: #dc3545; /* Red for error */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 15px;
+    gap: 15px;
+  }
+  .stats-header {
+    font-size: 0.8em;
+    flex-wrap: wrap; /* Allow stats to wrap */
+    justify-content: space-between; /* Better spacing when wrapped */
+  }
+  .stat-item {
+    margin-bottom: 5px; /* Spacing for wrapped items */
+  }
+  .text-to-type {
+    font-size: 1.2em; /* Slightly smaller font on mobile */
+    line-height: 1.7;
+  }
+  #text-display-container {
+    padding: 15px;
+    min-height: 100px;
+  }
+  .controls {
+    flex-direction: column; /* Stack controls vertically */
+    gap: 15px;
+  }
+  .controls .control-group,
+  .controls button {
+    width: 100%; /* Make controls full width */
+    max-width: 250px; /* But not too wide */
+    justify-content: space-between; /* Align label and select */
+  }
+  .controls button {
+    max-width: none; /* Allow button to be full width if needed */
+  }
+  .keyboard-hint {
+    gap: 3px;
+  }
+  .keyboard-hint span {
+    padding: 6px 8px;
+    font-size: 0.75em;
+  }
+  .keyboard-hint .spacebar-hint {
+    padding: 6px 30px;
+  }
+}

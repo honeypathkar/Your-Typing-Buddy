@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Typing Buddy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="stats-header">
+        <div class="stat-item">
+          <span>Language: English</span>
+        </div>
+        <div class="stat-item">
+          <span id="wpm-display">WPM: 0</span>
+        </div>
+        <div class="stat-item">
+          <span id="accuracy-display">Accuracy: 100%</span>
+        </div>
+        <div class="stat-item">
+          <span id="timer-display">Time: 1:00</span>
+        </div>
+        <div class="stat-item">
+          <span id="highest-wpm-display">Best: 0 WPM</span>
+        </div>
+      </header>
+
+      <div id="text-display-container">
+        <div id="text-display" class="text-to-type">
+          Select options and press Start.
+        </div>
+      </div>
+
+      <input
+        type="text"
+        id="hidden-input"
+        aria-hidden="true"
+        style="
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+          opacity: 0;
+          width: 1px;
+          height: 1px;
+        "
+      />
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="duration-select">Duration:</label>
+          <select id="duration-select">
+            <option value="30">30s</option>
+            <option value="60" selected>1m</option>
+            <option value="120">2m</option>
+            <option value="300">5m</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="case-select">Case:</label>
+          <select id="case-select">
+            <option value="mixed" selected>Mixed Case</option>
+            <option value="lowercase">Lowercase</option>
+            <option value="uppercase">Uppercase</option>
+          </select>
+        </div>
+        <button id="start-reset-button">Start</button>
+      </div>
+
+      <div id="message-box" class="message-box hidden"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
